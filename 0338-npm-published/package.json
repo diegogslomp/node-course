@@ -1,5 +1,5 @@
 {
-  "name": "express-demo",
+  "name": "npm-published",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,12 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "config": "^2.0.1",
-    "debug": "^3.1.0",
-    "express": "^4.16.3",
-    "helmet": "^3.13.0",
-    "joi": "^13.1.0",
-    "morgan": "^1.9.0",
-    "pug": "^2.0.3"
+    "lion-lib-28": "^1.1.0"
   }
 }
