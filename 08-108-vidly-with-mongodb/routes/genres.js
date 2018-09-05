@@ -55,12 +55,12 @@ router.put('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-
-  const genre = await Genre.findByIdAndRemove(req.params.id);
-  if (!genre) return res.status(404).send('The given ID genre does not exists');
-
-  res.send(genre);
-
+  try {
+    const genre = await Genre.findByIdAndRemove(req.params.id);  
+    res.send(genre);
+  } catch (ex) {
+    res.status(404).send('The given ID genre does not exists');  
+  }
 });
 
 function validateGenre(genre) {
