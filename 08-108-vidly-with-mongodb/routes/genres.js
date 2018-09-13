@@ -6,6 +6,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
+  throw new Error('Could not ge the genres.');
   try {
     res.send(await Genre.find().sort('name'));
   } catch (ex) {
