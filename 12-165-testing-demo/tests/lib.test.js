@@ -19,3 +19,10 @@ describe('absolute', () => {
   });
 
 });
+
+describe('greet', () => {
+  it('should return the greeting message', () => {
+    const result = lib.greet('Diego');
+    expect(result).toBe('Welcome Diego');
+  });
+});
