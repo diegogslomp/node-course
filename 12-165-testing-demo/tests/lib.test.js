@@ -27,3 +27,11 @@ describe('greet', () => {
     expect(result).toContain('Diego');
   });
 });
+
+describe('getCurrencies', () => {
+  it('should return supported currencies', () => {
+    const result = lib.getCurrencies();
+    // Too general
+    expect(result).toBeDefined();
+  });
+});
