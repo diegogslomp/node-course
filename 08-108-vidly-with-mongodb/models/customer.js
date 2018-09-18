@@ -1,20 +1,20 @@
-const mongoose = require('mongoose');
 const Joi = require('joi');
+const mongoose = require('mongoose');
 
-const Customer = mongoose.model('Customer', mongoose.Schema({
-  name: { 
+const Customer = mongoose.model('Customer', new mongoose.Schema({
+  name: {
     type: String,
     required: true,
     minlength: 5,
     maxlength: 50
   },
   isGold: {
-    type: Boolean, 
+    type: Boolean,
     default: false
-    
   },
   phone: {
-    type: Number,
+    type: String,
+    required: true,
     minlength: 5,
     maxlength: 50
   }
@@ -23,11 +23,12 @@ const Customer = mongoose.model('Customer', mongoose.Schema({
 function validateCustomer(customer) {
   const schema = {
     name: Joi.string().min(5).max(50).required(),
-    isGold: Joi.boolean(),
-    phone: Joi.number().min(5).max(50)
+    phone: Joi.string().min(5).max(50).required(),
+    isGold: Joi.boolean()
   };
+
   return Joi.validate(customer, schema);
 }
 
-exports.Customer = Customer;
+exports.Customer = Customer; 
 exports.validate = validateCustomer;

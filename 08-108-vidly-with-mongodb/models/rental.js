@@ -1,56 +1,56 @@
-const mongoose = require('mongoose');
 const Joi = require('joi');
+const mongoose = require('mongoose');
 
-const Rental = mongoose.model('Rental', mongoose.Schema({
-  customer: {
+const Rental = mongoose.model('Rental', new mongoose.Schema({
+  customer: { 
     type: new mongoose.Schema({
-      name: { 
+      name: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 50
       },
       isGold: {
-        type: Boolean, 
+        type: Boolean,
         default: false
-        
       },
       phone: {
-        type: Number,
+        type: String,
+        required: true,
         minlength: 5,
         maxlength: 50
-      }
-    }),
+      }      
+    }),  
     required: true
   },
   movie: {
     type: new mongoose.Schema({
-      title: { 
+      title: {
         type: String,
         required: true,
-        trim: true,
+        trim: true, 
         minlength: 5,
         maxlength: 255
       },
-      dailyRentalRate: {
-        type: Number,
+      dailyRentalRate: { 
+        type: Number, 
+        required: true,
         min: 0,
-        max: 255,
-        default: 0
-      }
+        max: 255
+      }   
     }),
     required: true
   },
-  dateOut: {
-    type: Date,
+  dateOut: { 
+    type: Date, 
     required: true,
     default: Date.now
   },
-  dateReturned: {
+  dateReturned: { 
     type: Date
-  }, 
-  rentalFee: {
-    type: Number,
+  },
+  rentalFee: { 
+    type: Number, 
     min: 0
   }
 }));
@@ -60,9 +60,9 @@ function validateRental(rental) {
     customerId: Joi.objectId().required(),
     movieId: Joi.objectId().required()
   };
-  
+
   return Joi.validate(rental, schema);
 }
 
-exports.Rental = Rental;
+exports.Rental = Rental; 
 exports.validate = validateRental;
