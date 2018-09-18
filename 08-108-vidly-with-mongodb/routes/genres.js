@@ -16,7 +16,9 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', validateObjectId, async (req, res) => {
   try {
-    res.send(await Genre.findById(req.params.id));
+    const genre = await Genre.findById(req.params.id);
+    if(!genre) return res.status(404).send('The given ID genre does not exists');
+    res.send(genre);
   } catch (ex) {
     res.status(404).send('The given ID genre does not exists');
   }
